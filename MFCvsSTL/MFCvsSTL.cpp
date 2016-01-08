@@ -325,7 +325,6 @@ int CTimeHelper2013::DiffMS()
 int testCompate()
 {
 	_tprintf(_T("MFC vs STL performance test\n"));
-	perf_startup(); // unnecessary
 	testList(1000 * 10);
 	testList(1000 * 100);
 	testList(1000 * 200);
@@ -340,11 +339,11 @@ int testCompate()
 	return 1;
 }
 
-int testFastHash()
+ int testFastHash()
 {
 	int nCount = 1000 * 100;
-	for (int b = 2; b < 8; b++)
-	for (int l = 2; l < 8; l++)
+	for (int b = 2; b < 7; b++)
+	for (int l = 2; l < 9; l++)
 	{
 		g_nLetters = l;
 		g_nBits = b;
@@ -373,7 +372,8 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		_tprintf(_T("Fatal Error: MFC initialization failed\n"));
 		return 2;
 	}
-	testCompate();
+	perf_startup(); // unnecessary
+	// testCompate();
 	testFastHash();
 	return nRetCode;
 }
